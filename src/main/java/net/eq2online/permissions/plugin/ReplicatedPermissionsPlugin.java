@@ -15,6 +15,8 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import net.eq2online.permissions.ReplicatedPermissionsContainer;
 import net.eq2online.permissions.plugin.providers.PermissionsMappingProviderGeneric;
 
+import java.util.Arrays;
+
 /**
  * Main Bukkit plugin class for the client permissions system
  *
@@ -134,7 +136,7 @@ public class ReplicatedPermissionsPlugin extends JavaPlugin implements Listener,
 		
 		try
 		{
-			query = ReplicatedPermissionsContainer.fromBytes(message);
+			query = ReplicatedPermissionsContainer.fromBytes(Arrays.copyOfRange(message, 1, message.length));
 		}
 		catch (Exception ex) {}
 		

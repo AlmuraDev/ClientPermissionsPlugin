@@ -99,13 +99,11 @@ public class ReplicatedPermissionsContainer implements Serializable
 		try
 		{
 			ObjectInputStream inputStream = new ObjectInputStream(new ByteArrayInputStream(data));
-			ReplicatedPermissionsContainer object = (ReplicatedPermissionsContainer)inputStream.readObject();
-			return object;
+			return (ReplicatedPermissionsContainer)inputStream.readObject();
 		}
-		catch (IOException e) { }
-		catch (ClassNotFoundException e) { }
-		catch (ClassCastException e) { }
-		
+		catch (IOException | ClassNotFoundException | ClassCastException ignored) {
+		}
+
 		return null;
 	}
 }

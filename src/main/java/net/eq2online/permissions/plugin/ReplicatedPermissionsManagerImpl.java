@@ -1,5 +1,6 @@
 package net.eq2online.permissions.plugin;
 
+import java.nio.ByteBuffer;
 import java.util.*;
 
 import net.eq2online.permissions.ReplicatedPermissionsContainer;
@@ -95,9 +96,9 @@ public class ReplicatedPermissionsManagerImpl implements ReplicatedPermissionsMa
 		if (havePermissions)
 		{
 			ReplicatedPermissionsContainer replContainer = new ReplicatedPermissionsContainer(data.modName, data.modVersion, replicatePermissions);
-			
-			byte[] replData = replContainer.getBytes();
-			player.sendPluginMessage(this.parent, ReplicatedPermissionsContainer.CHANNEL, replData);
+
+			final byte[] bytes = replContainer.getBytes();
+			player.sendPluginMessage(this.parent, ReplicatedPermissionsContainer.CHANNEL, ((ByteBuffer) ByteBuffer.allocate(bytes.length + 1).put((byte) 0).put(bytes).flip()).array());
 		}
 	}
 }
