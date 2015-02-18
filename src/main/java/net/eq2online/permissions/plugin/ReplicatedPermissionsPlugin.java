@@ -136,7 +136,7 @@ public class ReplicatedPermissionsPlugin extends JavaPlugin implements Listener,
 		
 		try
 		{
-			query = ReplicatedPermissionsContainer.fromBytes(Arrays.copyOfRange(message, 1, message.length));
+			query = ReplicatedPermissionsContainer.fromBytesWithDiscriminator(message);
 		}
 		catch (Exception ex) {}
 		
